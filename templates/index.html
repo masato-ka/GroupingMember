@@ -18,7 +18,15 @@
         alert("err");
     }   
     
-    
+    function check_number(value, range_end){
+
+        if(value > 0 && value < range_end){
+            alert("Sorry, Input value is only number.")
+            return false
+        }
+        return true
+    }
+
     function do_command(){
         var total = document.getElementById("total").value;
         var group = document.getElementById("group").value;
