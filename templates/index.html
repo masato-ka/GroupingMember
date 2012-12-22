@@ -9,7 +9,17 @@
 
 <script type="text/javascript" charset="utf-8">
     function onSuccess(data, status){
-        alert(data);
+        var result = $.perseJSON(data)
+        for(group_number in result){
+            
+            result[group_number]
+            $('#result').append('<tr>'+
+                                '<td>'+group_number+'</td>'
+                                '<td>'+result[group_number]+'</td>'
+                                '</tr>')
+
+        }
+
         
     }
 
@@ -49,7 +59,7 @@
 </head>
 <body>
 <h1>ぐるーぷわけ</h1>
-<h3>ゆとり専用</h3>
+<h3>(ゆとり専用)</h3>
 <div>
 <form>
 <label>全員の人数</label><input id='total' type='number' /><br>
@@ -58,7 +68,7 @@
 </form>
 </div>
 <div>
-結果！
+<h3>結果！</h3>
 <table id='result'>
 <tr>
 <th>グループ名</th><th>番号</th>
