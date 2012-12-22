@@ -4,6 +4,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <meta charset="utf-8">
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+<style type="text/css">
+table {
+    color: black;
+    background: #fff;
+    border: 1px solid #b4b4b4;
+    font: bold 17px helvetica;
+    padding: 0;
+    margin-top:10px;
+    width: 50%;
+    -webkit-border-radius: 8px;
+}
+     
+table tr td {
+    color: #666;
+    border-bottom: 1px solid #b4b4b4;
+    border-right: 1px solid #b4b4b4;
+    padding: 10px 10px 10px 10px;
+    background-image: -webkit-linear-gradient(top, #fdfdfd, #eee);
+}
+         
+table tr td:last-child {
+    border-right: none;
+}
+
+table tr:last-child td {
+    border-bottom: none;
+}​
+</style>
 <script src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
 
@@ -58,13 +86,18 @@
 
 </head>
 <body>
-<h1>ぐるーぷわけ</h1>
+<h1>ちーむわけ</h1>
 <h3>(ゆとり専用)</h3>
+<p>1. 全員に一番から順に番号を振ります<br>
+   2. 全員の人数を入力する<br>
+   3. チームの数を入力する<br>
+   4. チーム分けを押す<br>
+</p>
 <div>
 <form>
 <label>全員の人数</label><input id='total' type='number' /><br>
 <label>チームの数</label><input id='group' type='number' /><br>
-<input id='exec' type='button' value='グループ作成' onClick='do_command()'>
+<input id='exec' type='button' value='チーム分け' onClick='do_command()'>
 </form>
 </div>
 <div>

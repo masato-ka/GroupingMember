@@ -2,7 +2,7 @@
 import os
 import random
 import json
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 
 app = Flask(__name__)
 
@@ -23,8 +23,9 @@ def proc_post_request():
         group = request.form['group']
         result = grouping(total, group)
         #result=search_zipcode(request.form['zipcode'])
-        print result
-        return result
+        res = make_response(result)
+        res.headers['Cache-Control'] = 'no-cache'
+        return res
     else:
         return 'Please PSOT Method'
 
@@ -38,13 +39,13 @@ def grouping(total, group):
         number_total = int(total)
         number_group = int(group)
     except:
-        print "exception"
         return None
     
     number_per_group = number_total / number_group
 
-    persons = range(0, number_total)
-    groups = range(0, number_group)
+    persons = range(1, number_total + 1)
+    groups = range(1, number_group + 1)
+
 
     # create group
     group_dic = {}
@@ -53,13 +54,11 @@ def grouping(total, group):
 
     random.shuffle(persons)
     for key in group_dic.keys():
-        print key
         for enumrate in range(0, number_per_group):
-            group_dic[key].append(persons.pop())
+            group_dic[key].append('%s番さん' % persons.pop())
             if not len(persons):
                 break
-        print group_dic
-    
+        
     # encode json? 
     return json.dumps(group_dic)
 
