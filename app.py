@@ -22,7 +22,6 @@ def proc_post_request():
         total = request.form['total']
         group = request.form['group']
         result = grouping(total, group)
-        #result=search_zipcode(request.form['zipcode'])
         res = make_response(result)
         res.headers['Cache-Control'] = 'no-cache'
         return res
