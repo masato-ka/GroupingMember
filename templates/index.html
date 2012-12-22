@@ -9,13 +9,12 @@
 
 <script type="text/javascript" charset="utf-8">
     function onSuccess(data, status){
-        var result = $.perseJSON(data)
-        for(group_number in result){
-            
-            result[group_number]
+        $('#result').find("tr:gt(0)").remove()
+        for(group_number in data){
+
             $('#result').append('<tr>'+
-                                '<td>'+group_number+'</td>'
-                                '<td>'+result[group_number]+'</td>'
+                                '<td>'+group_number+'</td>'+
+                                '<td>'+data[group_number]+'</td>'+
                                 '</tr>')
 
         }
@@ -47,6 +46,7 @@
             url: "/grouping/",
             cache: false,
             data: formData,
+            dataType: "JSON",
             success: onSuccess,
             error: onError
         });

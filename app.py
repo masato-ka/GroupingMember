@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import random
+import json
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
@@ -22,6 +23,7 @@ def proc_post_request():
         group = request.form['group']
         result = grouping(total, group)
         #result=search_zipcode(request.form['zipcode'])
+        print result
         return result
     else:
         return 'Please PSOT Method'
@@ -47,7 +49,7 @@ def grouping(total, group):
     # create group
     group_dic = {}
     for group in groups:
-        group_dic['%s' % group] = []
+        group_dic["%s" % group] = []
 
     random.shuffle(persons)
     for key in group_dic.keys():
@@ -59,7 +61,7 @@ def grouping(total, group):
         print group_dic
     
     # encode json? 
-    return '%s' % group_dic
+    return json.dumps(group_dic)
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
