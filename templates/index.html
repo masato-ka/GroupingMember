@@ -1,15 +1,52 @@
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <title> Grouping member. </title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta charset="utf-8">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css" />
+<script src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+    function onSuccess(data, status){
+        alert(data);
+        
+    }
+
+    function onError(data, status){
+        // handle an error
+        alert("err");
+    }   
+    
+    
+    function do_command(){
+        var total = document.getElementById("total").value;
+        var group = document.getElementById("group").value;
+                
+        var formData = "total=" + total + "&group=" + group
+        $.ajax({
+            type: "POST",
+            url: "/grouping/",
+            cache: false,
+            data: formData,
+            success: onSuccess,
+            error: onError
+        });
+        return false;
+        
+    }
+</script>
+
+
 </head>
 <body>
-<h1>ぐるーぷわけの自動くじ引き</h1>
+<h1>ぐるーぷわけ</h1>
+<h3>ゆとり専用</h3>
 <div>
 <form>
-<label>全員の人数</label><input id='total' type='text' /><br>
-<label>1グループの人数</label><input id='member' type='text' /><br>
-<input id='exec' type='submit'>
+<label>全員の人数</label><input id='total' type='number' /><br>
+<label>1グループの人数</label><input id='group' type='number' /><br>
+<input id='exec' type='button' value='グループ作成' onClick='do_command'>
 </form>
 </div>
 <div>
