@@ -36,8 +36,9 @@ def grouping(total, group):
         number_total = int(total)
         number_group = int(group)
     except:
+        print "exception"
         return None
-
+    
     number_per_group = number_total / number_group
 
     persons = range(0, number_total)
@@ -46,16 +47,19 @@ def grouping(total, group):
     # create group
     group_dic = {}
     for group in groups:
-        group_dic['%s', group] = []
+        group_dic['%s' % group] = []
 
     random.shuffle(persons)
     for key in group_dic.keys():
-        for enumrate in number_per_group:
+        print key
+        for enumrate in range(0, number_per_group):
             group_dic[key].append(persons.pop())
             if not len(persons):
                 break
-        
-    return json.dumps(group_dic, ensure_ascii=False)
+        print group_dic
+    
+    # encode json? 
+    return '%s' % group_dic
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
