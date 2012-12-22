@@ -42,6 +42,9 @@ def grouping(total, group):
         return None
     
     number_per_group = number_total / number_group
+    odd = number_total % number_group
+    if odd > 0:
+        number_per_group += 1
 
     persons = range(1, number_total + 1)
     groups = range(1, number_group + 1)
@@ -56,9 +59,8 @@ def grouping(total, group):
     for key in group_dic.keys():
         for enumrate in range(0, number_per_group):
             group_dic[key].append('%s番さん' % persons.pop())
-            if not len(persons):
+            if len(persons) == 0:
                 break
-        
     # encode json? 
     return json.dumps(group_dic)
 
